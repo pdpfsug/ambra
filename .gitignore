@@ -83,3 +83,7 @@ doc/api/
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+
+
+# My ignore
+settings.py

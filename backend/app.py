@@ -4,9 +4,10 @@ from flask import Flask, redirect, request, Response
 from waitress import serve
 from werkzeug.utils import secure_filename
 
+from settings import IP, PORT
+
 UPLOAD_FOLDER = 'gallery'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-PORT = 6789
 
 app = Flask(__name__)
 
@@ -34,7 +35,7 @@ def upload_file():
         # Get link for each file
         for file in os.listdir(app.config['UPLOAD_FOLDER']):
             # Create image URL
-            url = "http://{0}:{1}/{2}/{3}".format(request.remote_addr,
+            url = "http://{0}:{1}/{2}/{3}".format(IP,
                                                   PORT,
                                                   os.path.join(app.config['UPLOAD_FOLDER']),
                                                   file)
