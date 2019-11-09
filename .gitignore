@@ -86,4 +86,8 @@ doc/api/
 
 
 # My ignore
+*.swp
+__pycache__
+
 settings.py
+gallery
