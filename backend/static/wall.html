@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row text-center text-lg-left"></div>
+    </div>
+</body>
+
+<script>
+    backendUrl = "/gallery/";
+    $.getJSON(backendUrl, function(data) {
+        var items = [];
+
+        $.each(data['links'], function(key, val) {
+            items.push('<div class="col-lg-3 col-md-4 col-6">' +
+                       '<img class="img-fluid img-thumbnail" src="' + val + '" ' +
+                       'onclick="window.open(\'' + val + '\', \'_blank\');">' +
+                       '</div>')
+        });
+    
+        $(".row").html(items);
+    });
+</script>
+</html>
