@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/dart,flutter,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=dart,flutter,visualstudiocode
 
@@ -84,5 +83,3 @@ doc/api/
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
-# End of https://www.gitignore.io/api/dart,flutter,visualstudiocode
