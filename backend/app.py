@@ -1,4 +1,5 @@
 import os
+from uuid import uuid1
 
 from flask import Flask, redirect, request, Response
 from waitress import serve
@@ -18,8 +19,14 @@ def root():
     return app.send_static_file('index.html')
 
 
+@app.route('/wall')
+def wall():
+    """Return the wall of all pictures"""
+    return app.send_static_file('wall.html')
+
+
 @app.route('/gallery/', methods=['GET', 'POST'])
-def upload_file():
+def gallery_handler():
     """
     Gallery handler
     ----------------
@@ -51,12 +58,15 @@ def upload_file():
 
             # If filename exists and it's allowed
             if file.filename != '' and allowed_file(file.filename):
-                # Make sure the filename is ok
-                filename = secure_filename(file.filename)
+                # Create a unique filename
+                extension = file.filename.split(".")[-1]
+                filename = "{0}.{1}".format(uuid1(), extension)
+                print(filename)
+
                 # Save the image
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        return redirect('/')
+        return redirect('/wall')
 
 
 @app.route('/gallery/<path:file>')
